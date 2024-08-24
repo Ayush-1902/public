@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Donor Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="col-md-12">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <nav class="navbar-brand" style="background-color:#46A49E;">
+                    <div class="container-fluid">
+                        <img src="Untitled (150 × 150px).svg" alt="Logo" width="88" height="88">
+                        <span class="navbar-brand h1 mt-2" style="font-size: 17px; color: white;">MEDISHARE</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-10">
+                <nav class="navbar" style="background-color: lightgray;">
+                    <div class="container-fluid">
+                        <span class="navbar-brand h1 p-2" style="font-size: 40px; color: #46a49e;">My Profile</span>
+                        <hr>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <div class="row">
+        <div class="col-md-12">
+            <form class="file-upload">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="bg-secondary-soft px-5 py-5 rounded">
+                            <div class="row g-3">
+                                <h4 class="mb-4 mt-0" style="font-size: 25px; font-weight: bolder;">Donor Details</h4>
+                                <div class="col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" placeholder="" aria-label="First name"
+                                        value="Ayush" id="firstNameInput">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="" aria-label="Last name"
+                                        value="Jindal" id="lastNameInput">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" placeholder="" aria-label="Mobile number"
+                                        value="999999" id="phoneNumberInput">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail4" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="emailInput"
+                                        value="example@gmail.com" name="email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="dobInput" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dobInput" name="dob">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Gender</label>
+                                    <div class="input-group mb-3">
+                                        <select class="form-select" id="genderSelect" name="gender">
+                                            <option selected disabled>Specify Gender</option>
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Address</label>
+                                    <textarea class="form-control" aria-label="With textarea" id="addressInput"
+                                        name="address"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" placeholder="" aria-label="City"
+                                        value="Bathinda" id="cityInput">
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="idProofSelect" class="form-label">Valid ID Proof</label>
+                                    <div class="input-group mb-3">
+                                        <select class="form-select" id="idProofSelect" name="idProof">
+                                            <option selected>Choose...</option>
+                                            <option value="1">Adhaar Card</option>
+                                            <option value="2">Driving Licence</option>
+                                            <option value="3">Voter's Card</option>
+                                        </select>
+                                        <input type="file" class="form-control" id="idProofFileInput"
+                                            name="idProofFile">
+                                        <label class="input-group-text" for="idProofFileInput">Upload</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-5">
+                                    <label class="form-label">Available From</label>
+                                    <div class="input-group mb-3">
+                                        <input type="time" class="form-control"
+                                            aria-label="Text input with dropdown button" id="availableTimeFromInput"
+                                            name="availableTimeFrom">
+                                        <select class="form-select" id="availableTimeFromPeriodSelect"
+                                            name="availableTimeFromPeriod">
+                                            <option selected disabled>AM/PM</option>
+                                            <option value="1">AM</option>
+                                            <option value="2">PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label">Available Until</label>
+                                    <div class="input-group mb-3">
+                                        <input type="time" class="form-control"
+                                            aria-label="Text input with dropdown button" id="availableTimeToInput"
+                                            name="availableTimeTo">
+                                        <select class="form-select" id="availableTimeToPeriodSelect"
+                                            name="availableTimeToPeriod">
+                                            <option selected disabled>AM/PM</option>
+                                            <option value="1">AM</option>
+                                            <option value="2">PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-secondary-soft px-4 py-5 rounded">
+                            <div class="row g-3">
+                                <h4 class="mb-0 mt-5" style="text-align: center;">Upload your profile photo</h4>
+                                <div class="text-center">
+                                    <div class="col-md-12">
+                                        <center>
+                                            <img src="Nakama (100 × 100px).svg" id="profilePhotoPreview" alt=""
+                                                width="175px" height="175px">
+                                        </center>
+                                    </div>
+                                    <input type="file" id="profilePhotoInput" name="profilePhoto" hidden="">
+                                    <label class="btn btn-success-soft btn-block" for="profilePhotoInput">Upload</label>
+                                    <button type="button" class="btn btn-danger-soft">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-outline-success"
+                            formaction="/db-signup-process-secure">Save / Update</button>
+                    </center>
+                </div>
+                <div class="col-md-12"></div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

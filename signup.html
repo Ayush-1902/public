@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGNUP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar" style="background-color:#46A49E;">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1" style="margin: auto; font-size: 40px; color: white;">SIGNUP!</span>
+    </div>
+  </nav>
+
+  <div class="col-md-12">
+    <form method="post" enctype="multipart/form-data">
+      <center> <br>
+        <h1 style="color: #46A49E; font-size: 40px; font-weight: bolder ;">Create Your Account</h1><br>
+      </center>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mx-4">
+            <input type="hidden" id="hiddenField" name="hiddenField">
+            <div class="mb-3">
+              <label for="nameInput" class="form-label">Name</label>
+              <input type="text" class="form-control" value="" id="nameInput" name="nameInput">
+            </div>
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">Email Address</label>
+              <input type="text" class="form-control" value="bce@gmail.com" id="emailInput" name="emailInput">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <input type="button" class="btn btn-outline-success mt-2" id="searchButton" value="Search">
+            </div>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Password</label>
+              <input type="text" class="form-control" value="" id="passwordInput" name="passwordInput"
+                placeholder="Your Password is Safe with Us">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mx-4">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="profilePictureInput" class="form-label">Profile Picture</label>
+                <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="profilePictureInput" name="profilePictureInput">
+                  <label class="input-group-text" for="profilePictureInput">Upload</label>
+                </div>
+                <label for="userTypeSelect" class="form-label">Type</label>
+                <div class="input-group mb-3">
+                  <select class="form-select" id="userTypeSelect" name="userTypeSelect">
+                    <option selected>Please select the type of user</option>
+                    <option value="1">Donor</option>
+                    <option value="2">Needy</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <img src="Nakama (100 × 100px).svg" id="previewImage" alt="" width="320px" height="320px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <center>
+        <button type="submit" class="btn btn-success" formaction="/db-signup-process-secure">Sign in</button>
+      </center>
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

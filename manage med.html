@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manage Medicine - Donor Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+    
+        .navbar-brand img {
+            margin-right: 8px;
+        }
+
+        .navbar-brand span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #46A49E;
+        }
+
+        .navbar {
+            background-color: #46A49E;
+            padding: 0;
+        }
+
+        .navbar .container-fluid {
+            padding: 10px;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            font-size: 18px;
+            color: #f1f1f1;
+            margin-right: 20px;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #f1f1f1;
+            background-color: transparent;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #46A49E;
+            color: #f1f1f1;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #46A49E;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #30807F;
+        }
+
+        .table {
+            background-color: #f1f1f1;
+        }
+
+        #medicineList {
+            padding: 0;
+        }
+
+        #medicineList .list-group-item {
+            background-color: #f1f1f1;
+            border: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        #medicineList .list-group-item:hover {
+            background-color: #e1e1e1;
+        }
+
+        .remove-btn {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        .email-form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-12">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <nav class="navbar-brand" style="background-color: #f1f1f1;">
+                    <div class="container-fluid">
+                        <img src="Untitled (150 × 150px).svg" alt="Logo" width="88" height="88">
+                        <span class="h1 mt-2" style="font-size: 17px; color: #46A49E; font-weight: bold;">MEDISHARE</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-10">
+                <nav class="navbar" style="background-color: #46A49E;">
+                    <div class="container-fluid">
+                        <span class="h1 p-2" style="font-size: 37px; color: #f1f1f1;">Manage Medicine</span>
+                        <hr style="border-top: 1px solid #f1f1f1;">
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-md-6">
+                            <label for="locationInput" class="form-label" style="font-weight: bold;">Email address</label>
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="Enter your email" id="emailInput" value="jindal@gmail.com">
+                                <button class="btn btn" type="button" onclick="getMedicinesByEmail()">Get Record</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="mt-4">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Serial Number</th>
+                                        <th scope="col">Medicine Name</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Expiry Date</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="medicineList">
+                                    <!-- Medicine items will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-danger" onclick="clearMedicineList()">Clear Medicine List</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script>
+        // Function to remove a medicine from the list
+        function removeMedicine(button) {
+            const row = button.closest('tr');
+            row.remove();
+            reindexSerialNumbers();
+        }
+
+        // Function to reindex the serial numbers after removing a row
+        function reindexSerialNumbers() {
+            const rows = document.querySelectorAll('#medicineList tr');
+            rows.forEach((row, index) => {
+                row.querySelector('td:first-child').textContent = index + 1;
+            });
+        }
+
+        // Function to clear the medicine list
+        function clearMedicineList() {
+            const medicineList = document.getElementById('medicineList');
+            medicineList.innerHTML = "";
+        }
+
+        // Function to fetch medicines by email (sample data)
+        function getMedicinesByEmail() {
+            const emailInput = document.getElementById('emailInput');
+            const email = emailInput.value.trim();
+
+            // Simulated data (replace with actual data fetched from server)
+            if (email === "jindal@gmail.com") {
+                clearMedicineList(); // Clear existing list
+                const medicineList = document.getElementById('medicineList');
+                const medicines = [
+                    { name: "Paracetamol", quantity: 2, expiry: "2023-12-31" },
+                    { name: "Cetirizine", quantity: 1, expiry: "2024-06-30" },
+                    { name: "Aspirin", quantity: 3, expiry: "2023-11-15" },
+                ];
+
+                medicines.forEach((medicine, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${medicine.name}</td>
+                        <td><input type="number" min="1" value="${medicine.quantity}" disabled></td>
+                        <td><input type="date" value="${medicine.expiry}" disabled></td>
+                        <td><button type="button" class="btn btn-danger btn-sm remove-btn" onclick="removeMedicine(this)">Remove</button></td>
+                    `;
+                    medicineList.appendChild(row);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

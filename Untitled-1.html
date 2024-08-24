@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MEDISHARE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Signup functionality
+      $("#signupButton").click(function() {
+        var name = $("#nameInput").val();
+        var email = $("#emailInput").val();
+        var password = $("#passwordInput").val();
+        var userType = $("#userTypeSelect").val();
+
+        // Perform your signup logic here using AJAX
+        $.ajax({
+          type: "POST",
+          url: "/signup",
+          data: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            userType: userType
+          }),
+          contentType: "application/json",
+          success: function(response) {
+            console.log(response);
+            alert("Signup successful!");
+          },
+          error: function(error) {
+            console.log(error);
+            alert("Signup failed: " + error.responseText);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <nav class="navbar" style="background-color:#46A49E;">
+    <div class="container-fluid">
+      <img src="Untitled (150 × 150px).svg" alt="Logo" width="75" height="75" class="d-inline-block">
+      <span class="navbar-brand h1" style="margin: auto; font-size: 40px; color: white;">MediShare Medical Assistance</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row mt-2">
+      <center>
+        <div class="col-md-10">
+          <center>
+            <img id="wait" src="Together, we can bridge the gap between those in need and the medicine they require..svg" class="img-thumbnail">
+          </center>
+        </div>
+      </center>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg" style="background-color:#F1F1F1;">
+    <div class="container-fluid">
+      <span class="navbar-brand h1" style="margin: auto; font-size: 20px; color: #46A49E;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3 contact-person" data-bs-toggle="modal" href="#signupModal">Sign up</a>
+              <div id="signupModal" class="modal fade" role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title" style="color: #46A49E; font-size: 40px; font-weight: bolder ;">Create Your Account</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <nav class="navbar" style="background-color:#46A49E;">
+                        <div class="container-fluid">
+                          <span class="navbar-brand mb-0 h1" style="margin: auto; font-size: 40px; color: white;">SIGNUP!</span>
+                        </div>
+                      </nav>
+
+                      <div class="col-md-12">
+                        <form>
+                          <br>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="mx-4">
+                                <input type="hidden" id="hiddenField" name="hiddenField">
+                                <div class="mb-3">
+                                  <label for="nameInput" class="form-label">Name</label>
+                                  <input type="text" class="form-control" value="" id="nameInput" name="nameInput">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="emailInput" class="form-label">Email Address</label>
+                                  <input type="email" class="form-control" value="" id="emailInput" name="emailInput">
+                                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="passwordInput" class="form-label">Password</label>
+                                  <input type="password" class="form-control" value="" id="passwordInput" name="passwordInput" placeholder="Your Password is Safe with Us">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="userTypeSelect" class="form-label">Type</label>
+                                  <div class="input-group mb-3">
+                                    <select class="form-select" id="userTypeSelect" name="userTypeSelect">
+                                      <option selected>Please select the type of user</option>
+                                      <option value="Donor">Donor</option>
+                                      <option value="Needy">Needy</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <br>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-success" id="signupButton" data-bs-dismiss="modal">Sign Up</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </span>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

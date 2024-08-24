@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Locate Medicine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="col-md-12">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <nav class="navbar-brand" style="background-color: #f1f1f1;">
+                    <div class="container-fluid">
+                        <img src="Untitled (150 × 150px).svg" alt="Logo" width="88" height="88">
+                        <span class="h1 mt-2" style="font-size: 17px; color: #46A49E; font-weight: bold;">MEDISHARE</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-10">
+                <nav class="navbar" style="background-color: #46A49E;">
+                    <div class="container-fluid">
+                        <span class="h1 p-2" style="font-size: 40px; color: #f1f1f1;">Locate Medicine</span>
+                        <hr style="border-top: 1px solid #f1f1f1;">
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <form>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label for="locationInput" class="form-label" style="font-weight: bold;">Location</label>
+                            <select class="form-select" id="locationInput" onchange="populateMedicineOptions()" required>
+                                <option value="">Select a city</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="chennai">Chennai</option>
+                                <option value="kolkata">Kolkata</option>
+                                <option value="bengaluru">Bengaluru</option>
+                                <option value="hyderabad">Hyderabad</option>
+                                <option value="ahmedabad">Ahmedabad</option>
+                                <option value="pune">Pune</option>
+                                <option value="jaipur">Jaipur</option>
+                                <option value="lucknow">Lucknow</option>
+                                <option value="bathinda">Bathinda</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="medicineNameInput" class="form-label" style="font-weight: bold;">Medicine Name</label>
+                            <select class="form-select" id="medicineNameInput" required>
+                                <option value="">Select a medicine</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="locationInput" class="form-label" style="font-weight: bold;">&nbsp;</label>
+                            <div class="row"> 
+                                <button type="button" onclick="showDonorCards()" class="btn btn-primary" style="background-color: #46A49E; border: none;">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center" id="donorCardsContainer">
+            <!-- Sample Donor Cards (You can generate these dynamically based on search results) -->
+            <!-- Donor cards will be populated here -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script>
+        // JavaScript to dynamically populate medicine options based on selected city
+        function populateMedicineOptions() {
+            const locationInput = document.getElementById('locationInput');
+            const medicineNameInput = document.getElementById('medicineNameInput');
+            const selectedCity = locationInput.value;
+
+            // Clear previous options
+            medicineNameInput.innerHTML = '<option value="">Select a medicine</option>';
+
+            // Simulate getting medicine options from the server based on the selected city
+            const medicineOptions = getMedicineOptionsForCity(selectedCity);
+
+            // Add medicine options to the select input
+            medicineOptions.forEach((medicine) => {
+                const option = document.createElement('option');
+                option.value = medicine;
+                option.textContent = medicine;
+                medicineNameInput.appendChild(option);
+            });
+        }
+
+        // Simulated function to get medicine options based on the selected city
+        function getMedicineOptionsForCity(city) {
+            // You can implement logic here to fetch medicine data from the server
+            // based on the selected city and return an array of medicine names.
+            // For the example, I'll just return some hardcoded data.
+            if (city === 'delhi' || city === 'mumbai' || city === 'chennai' || city === 'kolkata' || city === 'bengaluru' || city === 'hyderabad') {
+                return ['Paracetamol', 'Aspirin', 'Amoxicillin', 'Ibuprofen', 'Ciprofloxacin', 'Azithromycin'];
+            } else if (city === 'ahmedabad' || city === 'pune' || city === 'jaipur' || city === 'lucknow' || city === 'bathinda') {
+                return ['Paracetamol', 'Aspirin', 'Amoxicillin', 'Ibuprofen', 'Ciprofloxacin', 'Doxycycline'];
+            } else {
+                // If no city is selected or unrecognized city, return an empty array
+                return [];
+            }
+        }
+
+        function showDonorCards() {
+            const locationInput = document.getElementById('locationInput');
+            const medicineNameInput = document.getElementById('medicineNameInput');
+            const selectedCity = locationInput.value;
+            const selectedMedicine = medicineNameInput.value;
+
+            const donors = simulateDonorData(selectedCity, selectedMedicine);
+            const donorCardsContainer = document.getElementById('donorCardsContainer');
+            donorCardsContainer.innerHTML = ""; // Clear previous donor cards
+
+            // Generate donor cards based on the donor data
+            donors.forEach((donor) => {
+                const card = `
+                <div class="col-md-4 mb-3">
+                        <div class="card" style="background-color: #f1f1f1; border: 1px solid #e9ecef; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <img src="USERS (1).svg" alt="Donor Profile Picture" style="max-width: 200px; border-radius: 80%; margin: auto;">
+                            <hr style="border-top: 1px solid #f1f1f1; margin: 20px 0;">
+                            <h5 style="font-size: 22px; color: #46A49E; font-weight: bold; margin-bottom: 10px;">${donor.name}</h5>
+                            <p style="font-size: 16px; color: #6c757d; margin: 0;">Contact: ${donor.contact}</p>
+                            <p style="font-size: 16px; color: #6c757d; margin: 0;">Location: ${donor.location}</p>
+                            <a href="#" class="btn btn-primary mt-3" style="background-color: #46A49E; color: white; border: none; border-radius: 5px; padding: 8px 20px; font-size: 16px; transition: background-color 0.3s;">Contact Donor</a>
+                        </div>
+                    </div>
+                `;
+                donorCardsContainer.innerHTML += card;
+            });
+
+            // Show the donor cards container
+            donorCardsContainer.style.display = "flex";
+        }
+
+        // Simulated function to get donor data based on the selected city and medicine
+        function simulateDonorData(selectedCity, selectedMedicine) {
+            // Replace this with actual data fetched from your server or API
+            const donors = [
+                {
+                    name: "Donor 1",
+                    contact: "9876543210",
+                    location: selectedCity === "delhi" ? "Delhi, India" : (selectedCity === "mumbai" ? "Mumbai, India" : (selectedCity === "chennai" ? "Chennai, India" : (selectedCity === "kolkata" ? "Kolkata, India" : (selectedCity === "bengaluru" ? "Bengaluru, India" : (selectedCity === "hyderabad" ? "Hyderabad, India" : (selectedCity === "ahmedabad" ? "Ahmedabad, India" : (selectedCity === "pune" ? "Pune, India" : (selectedCity === "jaipur" ? "Jaipur, India" : (selectedCity === "lucknow" ? "Lucknow, India" : "Bathinda, India"))))))))),
+                },
+                {
+                    name: "Donor 2",
+                    contact: "1234567890",
+                    location: selectedCity === "delhi" ? "Delhi, India" : (selectedCity === "mumbai" ? "Mumbai, India" : (selectedCity === "chennai" ? "Chennai, India" : (selectedCity === "kolkata" ? "Kolkata, India" : (selectedCity === "bengaluru" ? "Bengaluru, India" : (selectedCity === "hyderabad" ? "Hyderabad, India" : (selectedCity === "ahmedabad" ? "Ahmedabad, India" : (selectedCity === "pune" ? "Pune, India" : (selectedCity === "jaipur" ? "Jaipur, India" : (selectedCity === "lucknow" ? "Lucknow, India" : "Bathinda, India"))))))))),
+                },
+                // Add more donor objects as needed
+            ];
+
+            return donors;
+        }
+    </script>
+</body>
+
+</html>
